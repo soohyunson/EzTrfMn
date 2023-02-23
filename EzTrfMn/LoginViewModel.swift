@@ -6,15 +6,39 @@
 //
 
 import SwiftUI
+import Firebase
+import Cryptokit
+import AuthenticationServices
+import GoogleSignIn
 
-struct LoginViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class LoginViewModel: ObservableObject{
+    func logGoogleUser(user: GIDGoogleUser){
+        Task{
+            do{
+                let idToken = user.authentication.idToken else{return}
+                let accessToken = user.authentication.accessToken
+                
+                let credential = OAuthProvider.credential(withProviderID: idToken, accessToken: accessToken)
+                
+                try await Auth.auth().signIn(with: credential)
+                print("success")
+                await MainActor.run(body: {
+                    withAnimation(.elseInOut){logStatus = true}
+                })
+            }catch{
+                await handleError(error: error)
+            }
+        }
     }
+   
+    
 }
 
-struct LoginViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginViewModel()
+extension UIApplication{
+    func rootController()->UIViewController{
+        guard let window = connectedScenes.first as? UIWindowScene else{return .init()}
+        guard let viewcontroller = window.windows.last?.rootViewController else{return .init()}
+
+        return viewcontroller
     }
 }

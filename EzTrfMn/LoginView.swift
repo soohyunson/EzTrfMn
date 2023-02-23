@@ -6,12 +6,30 @@
 //
 
 import SwiftUI
-
+import Firebase
+import AuthenticationServices
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct LoginView: View {
     var body: some View {
         Text("로그인")
-        
+        HStack(spacing: 8){
+            if let clientID = FirebaseApp.app()?.options.clientID{
+                GoogleSignInButton{
+                               GIDSignIn.sharedInstance.signIn(with:
+                                    .init(clientID: clientID), presenting:
+                                                                UIApplication.shared.rootController()){
+                                   user, error in if let error = error{
+                                       print(error.localizedDescription)
+                                       return
+                                   }
+                               }
+                           }
+                .blendMode(.overlay)
+            }
+
+        }
         
     }
 }
