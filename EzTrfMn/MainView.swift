@@ -9,7 +9,55 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Test님 환영합니다.")
+                .bold()
+                .font(.title)
+            Button {
+                print("페이잔액")
+            } label: {
+                Text("페이잔액")
+                    .foregroundColor(.white)
+                    .frame(minWidth: 0, maxWidth: 350, minHeight: 0, maxHeight: 180)
+                    .font(.system(size: 20))
+                    .background(Color.red)
+            }
+        
+            HStack{
+                VStack{
+                    Button {
+                        print("간편송금")
+                    } label: {
+                        Text("간편송금")
+                            .foregroundColor(.white)
+                            .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 90)
+                            .font(.system(size: 20))
+                            .background(Color.gray)
+                    }
+                    
+                    Button {
+                        print("페이관리")
+                    } label: {
+                        Text("페이관리")
+                            .foregroundColor(.white)
+                            .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 90)
+                            .font(.system(size: 20))
+                            .background(Color.gray)
+                    }
+                }
+
+                
+                Button {
+                    print("QR촬영")
+                } label: {
+                    Text("QR촬영")
+                        .foregroundColor(.white)
+                        .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 190)
+                        .font(.system(size: 20))
+                        .background(Color.gray)
+                }
+            }
+        }
     }
 }
 
