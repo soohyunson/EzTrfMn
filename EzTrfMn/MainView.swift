@@ -10,9 +10,17 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         VStack {
+            Text("Logo")
+                .bold()
+                .font(.system(size: 40))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.all)
             Text("Test님 환영합니다.")
                 .bold()
                 .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading)
+            
             Button {
                 print("페이잔액")
             } label: {
@@ -21,8 +29,9 @@ struct MainView: View {
                     .frame(minWidth: 0, maxWidth: 350, minHeight: 0, maxHeight: 180)
                     .font(.system(size: 20))
                     .background(Color.red)
-            }
-        
+            }.cornerRadius(15)
+
+            
             HStack{
                 VStack{
                     Button {
@@ -33,7 +42,7 @@ struct MainView: View {
                             .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 90)
                             .font(.system(size: 20))
                             .background(Color.gray)
-                    }
+                    }.cornerRadius(15)
                     
                     Button {
                         print("페이관리")
@@ -43,7 +52,7 @@ struct MainView: View {
                             .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 90)
                             .font(.system(size: 20))
                             .background(Color.gray)
-                    }
+                    }.cornerRadius(15)
                 }
 
                 
@@ -55,7 +64,7 @@ struct MainView: View {
                         .frame(minWidth: 0, maxWidth: 170, minHeight: 0, maxHeight: 190)
                         .font(.system(size: 20))
                         .background(Color.gray)
-                }
+                }.cornerRadius(15)
             }
         }
     }
